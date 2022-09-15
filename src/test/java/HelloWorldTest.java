@@ -17,4 +17,13 @@ public class HelloWorldTest {
     public void testHelloFrom(){
         System.out.println("Hello from Alex");
     }
+
+    @Test
+    public void testGetText(){
+        Response response = RestAssured
+                .get("https://playground.learnqa.ru/api/get_text")
+                .andReturn();
+        response.prettyPrint();
+    }
+
 }
