@@ -8,6 +8,7 @@ public class Ex7LongRedirectTest {
     public void testEx7LongRedirect(){
         Boolean doRequest = true;
         String requestUrl = "https://playground.learnqa.ru/api/long_redirect";
+        int amountOfRedirects = 0;
 
         while (doRequest) {
             Response response = RestAssured
@@ -20,13 +21,12 @@ public class Ex7LongRedirectTest {
             String locationHeader = response.getHeader("Location");
             if (locationHeader != null) {
                 requestUrl = locationHeader;
+                amountOfRedirects +=1;
             } else {
                 doRequest = false;
             }
-            if (response.getStatusCode() == 200){
-                System.out.println(response.getHeader("X-Host"));
-            }
         }
+        System.out.println(amountOfRedirects);
     }
 }
 
